@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+</head>
+<style>
+    article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;margin:0.67em 0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em;}pre{white-space:pre-wrap;}q{quotes:"\201C" "\201D" "\2018" "\2019";}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:0;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}
+
+    *, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+    .clearfix:before, .clearfix:after { content: ''; display: table; }
+    .clearfix:after { clear: both; }
+
+    body {
+        background: linear-gradient(90deg,rgba(0,176,255,1) 0%,rgba(0,151,255,1) 100%);
+        color: #fff;
+        font-size: 1em;
+        font-family: 'Raleway', Arial, sans-serif;
+        min-height: 500px;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+        outline: none;
+    }
+
+    a:hover,
+    a:focus {
+        color: #ec5a62;
+    }
+
+    /* Header */
+    .codrops-header,
+    .sidebar {
+        padding: 50px 0 0 50px;
+        float: left;
+        min-height: 9em;
+    }
+
+    .sidebar > nav {
+        float: left;
+        font-size: 1.5em;
+        line-height: 1.75;
+        text-align: center;
+        margin: 0 250px 1em 0;
+    }
+
+    .sidebar > nav a {
+        margin: 0 5px;
+    }
+
+    .codrops-header h1 {
+        margin: 0;
+        font-weight: 300;
+        font-size: 4.5em;
+        line-height: 0.75;
+        color: #fff;
+        letter-spacing: -1px;
+    }
+
+    .codrops-header h1 span {
+        display: block;
+        font-size: 61.5%;
+        font-weight: 800;
+        letter-spacing: 0px;
+        text-indent: 5px;
+        line-height: 1;
+        padding: 1em 0;
+        color: #000;
+    }
+    .upload{
+        width:200px;
+        height:80px;
+        line-height: 80px;
+        text-align: center;
+        background: #fff;
+        color:rgba(0,176,255,1);
+        font-size: 30px;
+        border-radius: 80px;
+        position: absolute;
+        top:58%;
+        left:50%;
+        transform: translateX(-100px);
+        cursor:pointer;
+    }
+    .select{
+        width:200px;
+        height:80px;
+        line-height: 80px;
+        text-align: center;
+        background: #fff;
+        color:rgba(0,176,255,1);
+        font-size: 30px;
+        border-radius: 80px;
+        position: absolute;
+        top:44%;
+        left:50%;
+        transform: translateX(-100px);
+        cursor:pointer;
+    }
+    .select input{
+        position: absolute;
+        width: 100%;
+        height:100%;
+        opacity: 0;
+        left:0;
+        top:0;
+    }
+    .nameinput{
+        width:200px;
+        height:40px;
+        font-size: 14px;
+        padding-left:10px;
+        outline: none;
+        border:1px solid #ededed;
+        border-radius: 5px;
+        position: absolute;
+        top:32%;
+        left:50%;
+        transform: translateX(-100px);
+    }
+</style>
+<body>
+<div class="container">
+    <header class="codrops-header">
+        <h1>四五二十</h1>
+    </header>
+    <input class="nameinput"/>
+    <div class="select">
+        选择报告
+        <form id="upload" method="post">
+        <input name="file" type="file" />
+        </form>
+    </div>
+    <div class="upload">
+        上传报告
+    </div>
+</div><!-- /container -->
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+<script>
+    $(".upload").click(function () {
+        var form = document.getElementById('upload'),
+            formData = new FormData(form),
+            flilname = $(".nameinput").val();
+
+        formData.append('caseName',flilname);
+        formData.append('execStatus',1);
+        var uid = creatUid();
+        $.ajax({
+            url:"/hack/saveTestReport",
+            type:"post",
+            data:formData,
+            processData:false,
+            contentType:false,
+            enctype:'multipart/form-data',
+            success:function(res){
+
+                console.log(res);
+            },
+            error:function(err){
+
+            }
+
+        })
+    });
+    function creatUid(){
+        var s = [];
+        var hexDigits = "0123456789abcdef";
+        for (var i = 0; i < 36; i++) {
+            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+        }
+        s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+        s[19] = hexDigits.substr((+s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+        s[8] = s[13] = s[18] = s[23] = "-";
+        var uuid = s.join("");
+        return uuid;
+    }
+</script>
+</html>

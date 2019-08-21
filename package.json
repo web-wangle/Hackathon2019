@@ -1,0 +1,20 @@
+{
+  "name": "hackaThon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "jiance": "mocha ./yijianjiance.js --reporter mochawesome",
+    "tree": "mocha ./moneyTree.js --reporter mochawesome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "koa": "^2.8.1",
+    "mocha": "^6.2.0",
+    "mochawesome": "^4.1.0",
+    "nightmare": "^3.0.2"
+  }
+}
